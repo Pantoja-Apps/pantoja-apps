@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             appendMessage(botReply, 'bot');
         } catch (error) {
             removeLoadingMessage(loadingId);
-            appendMessage("Lo siento, hubo un pequeño error al conectar con la IA. Escríbeme directamente a pantojaapps@gmail.com", 'bot');
+            appendMessage("Lo siento, ocurrió un error de conexión con la IA. Escríbeme a pantojaapps@gmail.com", 'bot');
         }
     }
 
@@ -234,13 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const API_KEY = 'AQ.Ab8RN6K5m9iQ1JgZ8bcNUJNVoc4oJulV-bO7VSdtNQ--rHr5qg';
         const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-        const systemInstruction = `Eres el asistente virtual oficial de Ángel Pantoja (Pantoja Apps), un Senior Android Developer & Mobile Architect. 
-        Tu objetivo es atender a clientes, reclutadores y visitantes, respondiendo de forma profesional, educada y técnica.
-        Información clave que manejas:
-        - Apps desarrolladas: Titan Stream (streaming en Kotlin y ExoPlayer), WalletSync (finanzas con biometría), NetGuard Pro (cortafuegos local), NovaShop (e-commerce en Jetpack Compose con Stripe), PulseFit (fitness con Health Connect), ApexCoins (gaming y pasarela Play Billing).
-        - Stack tecnológico: Kotlin, Jetpack Compose, Clean Architecture, Dagger Hilt, Coroutines, Flow, Room.
-        - Contacto: Siempre que muestren interés en contrataciones o consultoría, proporciónales el correo pantojaapps@gmail.com o invítales a usar la sección de contacto.
-        Responde de forma concisa y directa en español.`;
+        const systemInstruction = "Eres el asistente virtual oficial de Ángel Pantoja (Pantoja Apps), un Senior Android Developer & Mobile Architect. Responde de forma profesional, concisa y en español sobre sus apps (Titan Stream, WalletSync, NetGuard Pro, NovaShop, PulseFit, ApexCoins), su stack (Kotlin, Jetpack Compose, Clean Architecture) y sus medios de contacto (pantojaapps@gmail.com).";
 
         const response = await fetch(URL, {
             method: 'POST',
@@ -248,8 +242,9 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({
                 contents: [
                     {
+                        role: "user",
                         parts: [
-                            { text: systemInstruction + "\n\nPregunta del usuario: " + userPrompt }
+                            { text: systemInstruction + "\n\nPregunta del cliente: " + userPrompt }
                         ]
                     }
                 ]
@@ -257,10 +252,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const data = await response.json();
-        if(data.candidates && data.candidates[0].content.parts[0].text) {
-            return data.candidates[0].content.parts[0].text;
-        } else {
-            return "Entendido. Puedes comunicarte directamente con Ángel a través de pantojaapps@gmail.com para más detalles.";
+        
+        if (data.error) {
+            console.error("Error de la API Gemini:", data.error.message);
+            return "Hola, puedes contactar directamente a Ángel Pantoja a través de pantojaapps@gmail.com para cualquier consulta.";
         }
+
+        if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
+            return data.candidates[0].content.parts[0].text;
+        }
+        
+        return "¡Hola! Para contrataciones y propuestas, escríbele a Ángel en pantojaapps@gmail.com.";
     }
 });
