@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantoja Apps | Senior Android Developer Portfolio</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome para Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +13,6 @@
 </head>
 <body class="min-h-screen selection:bg-emerald-500 selection:text-black flex flex-col justify-between">
 
-    <!-- Navegación Superior -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 group">
@@ -35,13 +31,13 @@
             
             <nav class="hidden md:flex items-center gap-2 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800 text-sm font-medium text-slate-300">
                 <a href="index.html" class="px-4 py-2 rounded-xl transition-all text-emerald-400 bg-emerald-500/10 font-semibold">Inicio</a>
-                <a href="projects.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Aplicaciones</a>
-                <a href="stack.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Tech Stack</a>
-                <a href="contact.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Contacto</a>
+                <a href="proyectos.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Aplicaciones</a>
+                <a href="pila.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Tech Stack</a>
+                <a href="contacto.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Contacto</a>
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="contact.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                <a href="contacto.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
                     <i class="fa-solid fa-paper-plane text-xs"></i> Contratar
                 </a>
                 <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none cursor-pointer">
@@ -52,13 +48,12 @@
 
         <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-4 flex flex-col gap-3">
             <a href="index.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Inicio</a>
-            <a href="projects.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Aplicaciones</a>
-            <a href="stack.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Tech Stack</a>
-            <a href="contact.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Contacto</a>
+            <a href="proyectos.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Aplicaciones</a>
+            <a href="pila.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Tech Stack</a>
+            <a href="contacto.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Contacto</a>
         </div>
     </header>
 
-    <!-- Contenido de Inicio -->
     <main class="max-w-7xl mx-auto px-6 pt-32 pb-20 w-full flex-grow space-y-16">
         <!-- Hero Section -->
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
@@ -84,16 +79,15 @@
                 </div>
 
                 <div class="relative z-10 pt-8 flex flex-wrap gap-4 items-center">
-                    <a href="projects.html" class="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2">
+                    <a href="proyectos.html" class="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2">
                         Explorar Aplicaciones <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
-                    <a href="contact.html" class="px-6 py-3 rounded-xl glass-panel hover:bg-slate-800/80 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700">
+                    <a href="contacto.html" class="px-6 py-3 rounded-xl glass-panel hover:bg-slate-800/80 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700">
                         <i class="fa-regular fa-envelope text-emerald-400"></i> pantojaapps@gmail.com
                     </a>
                 </div>
             </div>
 
-            <!-- Foto de Perfil -->
             <div class="lg:col-span-4 flex flex-col gap-6">
                 <div class="glass-panel rounded-3xl p-4 flex flex-col justify-center flex-1 border border-slate-800 relative overflow-hidden group">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10"></div>
@@ -127,6 +121,49 @@
                 <div class="text-3xl md:text-4xl font-extrabold text-amber-400">100%</div>
                 <div class="text-sm font-semibold text-white">Clean Architecture</div>
                 <p class="text-xs text-slate-400">Pruebas unitarias & CI/CD</p>
+            </div>
+        </section>
+
+        <!-- Testimonios de Clientes -->
+        <section class="space-y-6">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <span class="text-emerald-400 font-semibold text-xs tracking-widest uppercase">Testimonios</span>
+                <h2 class="text-3xl font-extrabold text-white">Lo que opinan sobre Pantoja Apps</h2>
+                <p class="text-slate-400 text-sm">Comentarios de clientes y líderes tecnológicos que han confiado en mis desarrollos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-panel p-8 rounded-3xl border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-1 text-amber-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm italic">
+                        "Trabajar con Ángel Pantoja en el desarrollo de nuestra app de streaming fue una experiencia sobresaliente. Su dominio absoluto de Clean Architecture y rendimiento multimedia superó todas nuestras expectativas."
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">RM</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Rodrigo Morales</h4>
+                            <span class="text-slate-400 text-xs">CTO en StreamTech Global</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-1 text-amber-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm italic">
+                        "La calidad del código y la documentación técnica entregada por Pantoja Apps nos permitió escalar nuestra aplicación financiera sin ningún cuello de botella. Totalmente recomendado para proyectos exigentes."
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-sm">SV</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Sofía Valencia</h4>
+                            <span class="text-slate-400 text-xs">Product Manager en FinTech Latam</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
