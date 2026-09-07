@@ -136,111 +136,128 @@ function resetForm() {
     document.getElementById('success-alert').classList.add('hidden');
 }
 
-// ================= 4. ASISTENTE VIRTUAL CON IA =================
-const chatToggleBtn = document.getElementById('chat-toggle-btn');
-const chatCloseBtn = document.getElementById('chat-close-btn');
-const chatWindow = document.getElementById('chat-window');
-const chatSendBtn = document.getElementById('chat-send-btn');
-const chatInput = document.getElementById('chat-input');
-const chatMessages = document.getElementById('chat-messages');
+// ================= 4. ASISTENTE VIRTUAL CON IA (CORREGIDO Y BLINDADO) =================
+document.addEventListener('DOMContentLoaded', () => {
+    const chatToggleBtn = document.getElementById('chat-toggle-btn');
+    const chatCloseBtn = document.getElementById('chat-close-btn');
+    const chatWindow = document.getElementById('chat-window');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
 
-if(chatToggleBtn && chatWindow) {
-    chatToggleBtn.addEventListener('click', () => {
-        chatWindow.classList.toggle('hidden');
+    if(chatToggleBtn && chatWindow) {
+        chatToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = chatWindow.classList.contains('hidden');
+            if(isHidden) {
+                chatWindow.classList.remove('hidden');
+                setTimeout(() => {
+                    chatWindow.classList.remove('opacity-0', 'scale-95');
+                }, 10);
+            } else {
+                chatWindow.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                }, 300);
+            }
+        });
+    }
+
+    if(chatCloseBtn && chatWindow) {
+        chatCloseBtn.addEventListener('click', () => {
+            chatWindow.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                chatWindow.classList.add('hidden');
+            }, 300);
+        });
+    }
+
+    function sendUserMessage() {
+        if(!chatInput) return;
+        const text = chatInput.value.trim();
+        if(!text) return;
+
+        appendMessage(text, 'user');
+        chatInput.value = '';
+
+        const loadingId = 'loading-' + Date.now();
+        appendLoadingMessage(loadingId);
+
         setTimeout(() => {
-            chatWindow.classList.toggle('opacity-0');
-            chatWindow.classList.toggle('scale-95');
-        }, 10);
-    });
+            const botReply = generateSmartResponse(text);
+            removeLoadingMessage(loadingId);
+            appendMessage(botReply, 'bot');
+        }, 700);
+    }
 
-    chatCloseBtn.addEventListener('click', () => {
-        chatWindow.classList.add('opacity-0', 'scale-95');
-        setTimeout(() => chatWindow.classList.add('hidden'), 300);
-    });
-}
+    if(chatSendBtn && chatInput) {
+        chatSendBtn.addEventListener('click', sendUserMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') sendUserMessage();
+        });
+    }
 
-function sendUserMessage() {
-    const text = chatInput.value.trim();
-    if(!text) return;
+    function appendMessage(text, sender) {
+        if(!chatMessages) return;
+        const div = document.createElement('div');
+        if(sender === 'user') {
+            div.className = 'flex items-end justify-end gap-2';
+            div.innerHTML = `<div class="bg-emerald-600 text-slate-950 font-medium p-3 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed shadow-md">${text}</div>`;
+        } else {
+            div.className = 'flex items-start gap-2';
+            div.innerHTML = `
+                <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-xs font-bold">P</div>
+                <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-200 max-w-[85%] leading-relaxed">${text}</div>
+            `;
+        }
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-    appendMessage(text, 'user');
-    chatInput.value = '';
-
-    const loadingId = 'loading-' + Date.now();
-    appendLoadingMessage(loadingId);
-
-    setTimeout(() => {
-        const botReply = generateSmartResponse(text);
-        removeLoadingMessage(loadingId);
-        appendMessage(botReply, 'bot');
-    }, 700);
-}
-
-if(chatSendBtn && chatInput) {
-    chatSendBtn.addEventListener('click', sendUserMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if(e.key === 'Enter') sendUserMessage();
-    });
-}
-
-function appendMessage(text, sender) {
-    const div = document.createElement('div');
-    if(sender === 'user') {
-        div.className = 'flex items-end justify-end gap-2';
-        div.innerHTML = `<div class="bg-emerald-600 text-slate-950 font-medium p-3 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed shadow-md">${text}</div>`;
-    } else {
+    function appendLoadingMessage(id) {
+        if(!chatMessages) return;
+        const div = document.createElement('div');
+        div.id = id;
         div.className = 'flex items-start gap-2';
         div.innerHTML = `
             <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-xs font-bold">P</div>
-            <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-200 max-w-[85%] leading-relaxed">${text}</div>
+            <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-300 text-xs flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce"></span>
+                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+            </div>
         `;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
 
-function appendLoadingMessage(id) {
-    const div = document.createElement('div');
-    div.id = id;
-    div.className = 'flex items-start gap-2';
-    div.innerHTML = `
-        <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-xs font-bold">P</div>
-        <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-300 text-xs flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce"></span>
-            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
-            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
-        </div>
-    `;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+    function removeLoadingMessage(id) {
+        const el = document.getElementById(id);
+        if(el) el.remove();
+    }
 
-function removeLoadingMessage(id) {
-    const el = document.getElementById(id);
-    if(el) el.remove();
-}
+    function generateSmartResponse(query) {
+        const q = query.toLowerCase();
 
-function generateSmartResponse(query) {
-    const q = query.toLowerCase();
-
-    if(q.includes('hola') || q.includes('saludos') || q.includes('buenos dias')) {
-        return "¡Hola! Qué gusto saludarte. Soy el asistente inteligente de <strong>Pantoja Apps</strong>. ¿Te interesa conocer las aplicaciones móviles nativas de Ángel o quieres información sobre contratación?";
+        if(q.includes('hola') || q.includes('saludos') || q.includes('buenos dias')) {
+            return "¡Hola! Qué gusto saludarte. Soy el asistente inteligente de <strong>Pantoja Apps</strong>. ¿Te interesa conocer las aplicaciones móviles nativas de Ángel o quieres información sobre contratación?";
+        }
+        if(q.includes('titan') || q.includes('streaming') || q.includes('pelicula')) {
+            return "<strong>Titan Stream</strong> es la app insignia desarrollada en Kotlin y ExoPlayer. Ofrece streaming en alta fidelidad, reproductor HLS integrado y descargas offline con Clean Architecture.";
+        }
+        if(q.includes('walletsync') || q.includes('finanza') || q.includes('dinero')) {
+            return "<strong>WalletSync</strong> es una herramienta inteligente de finanzas personales con soporte para múltiples cuentas y autenticación biométrica (BiometricPrompt API).";
+        }
+        if(q.includes('novashop') || q.includes('tienda') || q.includes('comercio') || q.includes('e-commerce')) {
+            return "<strong>NovaShop</strong> es una app de comercio electrónico de moda desarrollada en Jetpack Compose, con pasarela de pagos segura de Stripe y carrito offline con Room Database.";
+        }
+        if(q.includes('stack') || q.includes('tecnologia') || q.includes('kotlin') || q.includes('compose') || q.includes('arquitectura')) {
+            return "El ecosistema técnico de Ángel abarca:<br>• <strong>Lenguajes:</strong> Kotlin, Java<br>• <strong>UI:</strong> Jetpack Compose<br>• <strong>Arquitectura:</strong> Clean Architecture (Modular)<br>• <strong>Inyección:</strong> Dagger Hilt & Koin<br>• <strong>Asincronía:</strong> Coroutines & Flow";
+        }
+        if(q.includes('contacto') || q.includes('correo') || q.includes('contratar') || q.includes('precio') || q.includes('presupuesto')) {
+            return "Puedes contactar a Ángel directamente escribiendo al correo <strong>pantojaapps@gmail.com</strong> o visitando la sección de <a href='contacto.html' class='text-emerald-400 underline font-semibold'>Contacto</a>.";
+        }
+        
+        return "Ángel Pantoja es Senior Android Developer enfocado en rendimiento y Clean Architecture. ¿Deseas que te comparta su correo <strong>pantojaapps@gmail.com</strong> para coordinar una propuesta de proyecto?";
     }
-    if(q.includes('titan') || q.includes('streaming') || q.includes('pelicula')) {
-        return "<strong>Titan Stream</strong> es la app insignia desarrollada en Kotlin y ExoPlayer. Ofrece streaming en alta fidelidad, reproductor HLS integrado y descargas offline con Clean Architecture.";
-    }
-    if(q.includes('walletsync') || q.includes('finanza') || q.includes('dinero')) {
-        return "<strong>WalletSync</strong> es una herramienta inteligente de finanzas personales con soporte para múltiples cuentas y autenticación biométrica (BiometricPrompt API).";
-    }
-    if(q.includes('novashop') || q.includes('tienda') || q.includes('comercio') || q.includes('e-commerce')) {
-        return "<strong>NovaShop</strong> es una app de comercio electrónico de moda desarrollada en Jetpack Compose, con pasarela de pagos segura de Stripe y carrito offline con Room Database.";
-    }
-    if(q.includes('stack') || q.includes('tecnologia') || q.includes('kotlin') || q.includes('compose') || q.includes('arquitectura')) {
-        return "El ecosistema técnico de Ángel abarca:<br>• <strong>Lenguajes:</strong> Kotlin, Java<br>• <strong>UI:</strong> Jetpack Compose<br>• <strong>Arquitectura:</strong> Clean Architecture (Modular)<br>• <strong>Inyección:</strong> Dagger Hilt & Koin<br>• <strong>Asincronía:</strong> Coroutines & Flow";
-    }
-    if(q.includes('contacto') || q.includes('correo') || q.includes('contratar') || q.includes('precio') || q.includes('presupuesto')) {
-        return "Puedes contactar a Ángel directamente escribiendo al correo <strong>pantojaapps@gmail.com</strong> o visitando la sección de <a href='contacto.html' class='text-emerald-400 underline font-semibold'>Contacto</a>.";
-    }
-    
-    return "Ángel Pantoja es Senior Android Developer enfocado en rendimiento y Clean Architecture. ¿Deseas que te comparta su correo <strong>pantojaapps@gmail.com</strong> para coordinar una propuesta de proyecto?";
-}
+});
