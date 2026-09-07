@@ -13,7 +13,6 @@
 </head>
 <body class="min-h-screen selection:bg-emerald-500 selection:text-black flex flex-col justify-between">
 
-    <!-- Navegación Superior -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 group">
@@ -32,13 +31,13 @@
             
             <nav class="hidden md:flex items-center gap-2 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800 text-sm font-medium text-slate-300">
                 <a href="index.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Inicio</a>
-                <a href="projects.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Aplicaciones</a>
-                <a href="stack.html" class="px-4 py-2 rounded-xl transition-all text-emerald-400 bg-emerald-500/10 font-semibold">Tech Stack</a>
-                <a href="contact.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Contacto</a>
+                <a href="proyectos.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Aplicaciones</a>
+                <a href="pila.html" class="px-4 py-2 rounded-xl transition-all text-emerald-400 bg-emerald-500/10 font-semibold">Tech Stack</a>
+                <a href="contacto.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Contacto</a>
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="contact.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                <a href="contacto.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
                     <i class="fa-solid fa-paper-plane text-xs"></i> Contratar
                 </a>
                 <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none cursor-pointer">
@@ -49,13 +48,12 @@
 
         <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-4 flex flex-col gap-3">
             <a href="index.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Inicio</a>
-            <a href="projects.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Aplicaciones</a>
-            <a href="stack.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Tech Stack</a>
-            <a href="contact.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Contacto</a>
+            <a href="proyectos.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Aplicaciones</a>
+            <a href="pila.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Tech Stack</a>
+            <a href="contacto.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Contacto</a>
         </div>
     </header>
 
-    <!-- Contenido Tech Stack -->
     <main class="max-w-7xl mx-auto px-6 pt-32 pb-20 w-full flex-grow space-y-12">
         <div class="text-center max-w-2xl mx-auto space-y-2">
             <span class="text-emerald-400 font-semibold text-xs tracking-widest uppercase">Ecosistema Tecnológico</span>
@@ -87,6 +85,51 @@
             <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-slate-800 hover:border-rose-500/40 transition-all group">
                 <i class="fa-solid fa-fire text-4xl text-rose-400 group-hover:scale-110 transition-transform"></i>
                 <span class="text-white font-semibold text-sm">Firebase Cloud</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-panel p-8 rounded-3xl border border-slate-800 space-y-4">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-emerald-400"></i> Arquitectura & Gestión de Estado
+                </h3>
+                <p class="text-slate-400 text-xs">Patrones orientados a separación de incumbencias y flujos unidireccionales de datos (UDF).</p>
+                <ul class="space-y-3 text-slate-300 text-sm">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> <strong>Clean Architecture:</strong> Capas totalmente desacopladas (Domain, Data, Presentation).</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> <strong>Dagger Hilt & Koin:</strong> Inyección de dependencias modular y orientada a pruebas.</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> <strong>Coroutines & Flow:</strong> Programación asíncrona avanzada y reactiva en ViewModel.</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> <strong>StateFlow & SharedFlow:</strong> Emisión segura de estados inmutables hacia la UI en Compose.</li>
+                </ul>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl border border-slate-800 space-y-4">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-vial-circle-check text-cyan-400"></i> Testing & Calidad de Software
+                </h3>
+                <p class="text-slate-400 text-xs">Garantía de calidad mediante pruebas automatizadas en cada ciclo de integración continua.</p>
+                <ul class="space-y-3 text-slate-300 text-sm">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> <strong>JUnit 5 & MockK:</strong> Pruebas unitarias de repositorios, casos de uso y ViewModels.</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> <strong>Turbine:</strong> Librería especializada para testear Kotlin Flows de manera reactiva.</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> <strong>Compose UI Test:</strong> Pruebas de instrumentación y Golden Tests visuales.</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> <strong>SonarQube & Detekt:</strong> Análisis estático para detección de deuda técnica y olores de código.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl border border-slate-800 space-y-4">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-terminal text-cyan-400"></i> Desglose de Código Avanzado (Kotlin Flow Repository Pattern)
+            </h3>
+            <p class="text-slate-400 text-xs">Ejemplo limpio de gestión reactiva de datos con inyección Hilt y despacho en hilos de I/O.</p>
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 text-xs font-mono text-emerald-400 overflow-x-auto space-y-1 shadow-inner">
+                <p><span class="text-purple-400">class</span> <span class="text-yellow-300">MediaRepository</span> @Inject <span class="text-purple-400">constructor</span>(</p>
+                <p class="pl-4"><span class="text-blue-400">private val</span> api: MediaApiService,</p>
+                <p class="pl-4"><span class="text-blue-400">private val</span> dao: MediaDao</p>
+                <p>) {</p>
+                <p class="pl-4"><span class="text-purple-400">val</span> streams: Flow&lt;List&lt;StreamModel&gt;&gt; = dao.observeStreams()</p>
+                <p class="pl-8">.flowOn(Dispatchers.IO)</p>
+                <p class="pl-8">.conflate()</p>
+                <p>}</p>
             </div>
         </div>
     </main>
