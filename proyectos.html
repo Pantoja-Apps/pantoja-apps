@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplicaciones | Pantoja Apps</title>
+    <!-- Importar SDK oficial de Google Gen AI -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.run/@google/genai"
+        }
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -227,7 +235,7 @@
                 </div>
                 <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
                     <span class="text-xs text-slate-400">Play Billing Library v6</span>
-                    <button onclick="openModal('ApexCoins', 'ApexCoins es una aplicación de gestión de moneda virtual y micropagos para videojuegos móviles. Implementa Google Play Billing Library v6 para compras in-app seguras, autenticación por huella dactilar, historial de transacciones cifrado con Room y conexión WebSocket en tiempo real para cotizaciones de tokens.', ['Google Play Billing', 'WebSocket', 'BiometricPrompt', 'Room DB', 'Kotlin Coroutines'], ['https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80'], ['Billetera de Monedas', 'Tienda In-App', 'Historial Seguro'])" class="px-3.5 py-2 rounded-xl bg-purple-500/10 hover:bg-purple-500 text-purple-400 hover:text-slate-950 font-semibold text-xs transition-all border border-purple-500/30 cursor-pointer">
+                    <button onclick="openModal('ApexCoins', 'ApexCoins es una aplicación de gestión de moneda virtual y micropagos para videojuegos móviles. Implementa Google Play Billing Library v6 para compras in-app seguras, autenticación por huella dactilar, historial de transacciones cifrado con Room y conexión WebSocket in real time para cotizaciones de tokens.', ['Google Play Billing', 'WebSocket', 'BiometricPrompt', 'Room DB', 'Kotlin Coroutines'], ['https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80'], ['Billetera de Monedas', 'Tienda In-App', 'Historial Seguro'])" class="px-3.5 py-2 rounded-xl bg-purple-500/10 hover:bg-purple-500 text-purple-400 hover:text-slate-950 font-semibold text-xs transition-all border border-purple-500/30 cursor-pointer">
                         Ver Detalles <i class="fa-solid fa-arrow-right ml-1"></i>
                     </button>
                 </div>
@@ -307,6 +315,6 @@
         © 2026 Pantoja Apps. Todos los derechos reservados.
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
