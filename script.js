@@ -1,8 +1,3 @@
-import { GoogleGenAI } from "@google/genai";
-
-// Inicializamos el cliente oficial de la IA con tu clave
-const ai = new GoogleGenAI({ apiKey: "AQ.Ab8RN6K5m9iQ1JgZ8bcNUJNVoc4oJulV-bO7VSdtNQ--rHr5qg" });
-
 // ================= 1. MENÚ MÓVIL =================
 const mobileBtn = document.getElementById('mobile-menu-btn');
 if(mobileBtn) {
@@ -141,7 +136,7 @@ function resetForm() {
     document.getElementById('success-alert').classList.add('hidden');
 }
 
-// ================= 4. ASISTENTE VIRTUAL CON SDK OFICIAL DE GEMINI =================
+// ================= 4. ASISTENTE VIRTUAL CON CLOUDFLARE WORKER PROXY =================
 document.addEventListener('DOMContentLoaded', () => {
     const chatToggleBtn = document.getElementById('chat-toggle-btn');
     const chatCloseBtn = document.getElementById('chat-close-btn');
@@ -180,32 +175,20 @@ document.addEventListener('DOMContentLoaded', () => {
         appendLoadingMessage(loadingId);
 
         try {
-            // Llamada oficial mediante la SDK de Google Gen AI
-            const response = await ai.models.generateContent({
-                model: 'gemini-1.5-flash',
-                contents: [
-                    {
-                        role: 'user',
-                        parts: [
-                            {
-                                text: `Eres el asistente virtual oficial de Ángel Pantoja (Pantoja Apps), un Senior Android Developer & Mobile Architect. 
-                                Responde de manera profesional, técnica y en español a los visitantes. 
-                                Tus apps desarrolladas son: Titan Stream, WalletSync, NetGuard Pro, NovaShop, PulseFit y ApexCoins. 
-                                Tu stack abarca Kotlin, Jetpack Compose, Clean Architecture y Coroutines. 
-                                Para contrataciones o proyectos, deriva a los usuarios al correo pantojaapps@gmail.com.
-                                
-                                Pregunta del usuario: ${text}`
-                            }
-                        ]
-                    }
-                ]
+            // URL de tu Cloudflare Worker personal
+            const WORKER_URL = "https://old-poetry-00c1.angelpantoja241.workers.dev/";
+
+            const response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: text })
             });
 
-            const botReply = response.text || "Escríbeme a pantojaapps@gmail.com para coordinar tu proyecto con Ángel Pantoja.";
+            const data = await response.json();
             removeLoadingMessage(loadingId);
-            appendMessage(botReply, 'bot');
+            appendMessage(data.reply, 'bot');
         } catch (error) {
-            console.error("Error SDK Gemini:", error);
+            console.error("Error al conectar con el Worker:", error);
             removeLoadingMessage(loadingId);
             appendMessage("Hola, puedes contactar directamente a Ángel Pantoja a través de pantojaapps@gmail.com para cualquier consulta.", 'bot');
         }
