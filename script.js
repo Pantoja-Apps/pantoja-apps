@@ -136,7 +136,7 @@ function resetForm() {
     document.getElementById('success-alert').classList.add('hidden');
 }
 
-// ================= 4. ASISTENTE VIRTUAL (CONTROL DIRECTO) =================
+// ================= 4. ASISTENTE VIRTUAL CON INTELIGENCIA ARTIFICIAL REAL (GEMINI) =================
 document.addEventListener('DOMContentLoaded', () => {
     const chatToggleBtn = document.getElementById('chat-toggle-btn');
     const chatCloseBtn = document.getElementById('chat-close-btn');
@@ -148,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if(chatToggleBtn && chatWindow) {
         chatToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            // Alternamos directamente la clase hidden y limpiamos opacidad/escala
             if(chatWindow.classList.contains('hidden')) {
                 chatWindow.classList.remove('hidden');
                 chatWindow.classList.remove('opacity-0', 'scale-95');
@@ -164,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function sendUserMessage() {
+    async function sendUserMessage() {
         if(!chatInput) return;
         const text = chatInput.value.trim();
         if(!text) return;
@@ -175,11 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const loadingId = 'loading-' + Date.now();
         appendLoadingMessage(loadingId);
 
-        setTimeout(() => {
-            const botReply = generateSmartResponse(text);
+        try {
+            const botReply = await callGeminiAPI(text);
             removeLoadingMessage(loadingId);
             appendMessage(botReply, 'bot');
-        }, 700);
+        } catch (error) {
+            removeLoadingMessage(loadingId);
+            appendMessage("Lo siento, hubo un pequeño error al conectar con la IA. Escríbeme directamente a pantojaapps@gmail.com", 'bot');
+        }
     }
 
     if(chatSendBtn && chatInput) {
@@ -228,28 +230,37 @@ document.addEventListener('DOMContentLoaded', () => {
         if(el) el.remove();
     }
 
-    function generateSmartResponse(query) {
-        const q = query.toLowerCase();
+    async function callGeminiAPI(userPrompt) {
+        const API_KEY = 'AQ.Ab8RN6K5m9iQ1JgZ8bcNUJNVoc4oJulV-bO7VSdtNQ--rHr5qg';
+        const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-        if(q.includes('hola') || q.includes('saludos') || q.includes('buenos dias')) {
-            return "¡Hola! Qué gusto saludarte. Soy el asistente inteligente de <strong>Pantoja Apps</strong>. ¿Te interesa conocer las aplicaciones móviles nativas de Ángel o quieres información sobre contratación?";
+        const systemInstruction = `Eres el asistente virtual oficial de Ángel Pantoja (Pantoja Apps), un Senior Android Developer & Mobile Architect. 
+        Tu objetivo es atender a clientes, reclutadores y visitantes, respondiendo de forma profesional, educada y técnica.
+        Información clave que manejas:
+        - Apps desarrolladas: Titan Stream (streaming en Kotlin y ExoPlayer), WalletSync (finanzas con biometría), NetGuard Pro (cortafuegos local), NovaShop (e-commerce en Jetpack Compose con Stripe), PulseFit (fitness con Health Connect), ApexCoins (gaming y pasarela Play Billing).
+        - Stack tecnológico: Kotlin, Jetpack Compose, Clean Architecture, Dagger Hilt, Coroutines, Flow, Room.
+        - Contacto: Siempre que muestren interés en contrataciones o consultoría, proporciónales el correo pantojaapps@gmail.com o invítales a usar la sección de contacto.
+        Responde de forma concisa y directa en español.`;
+
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [
+                    {
+                        parts: [
+                            { text: systemInstruction + "\n\nPregunta del usuario: " + userPrompt }
+                        ]
+                    }
+                ]
+            })
+        });
+
+        const data = await response.json();
+        if(data.candidates && data.candidates[0].content.parts[0].text) {
+            return data.candidates[0].content.parts[0].text;
+        } else {
+            return "Entendido. Puedes comunicarte directamente con Ángel a través de pantojaapps@gmail.com para más detalles.";
         }
-        if(q.includes('titan') || q.includes('streaming') || q.includes('pelicula')) {
-            return "<strong>Titan Stream</strong> es la app insignia desarrollada en Kotlin y ExoPlayer. Ofrece streaming en alta fidelidad, reproductor HLS integrado y descargas offline con Clean Architecture.";
-        }
-        if(q.includes('walletsync') || q.includes('finanza') || q.includes('dinero')) {
-            return "<strong>WalletSync</strong> es una herramienta inteligente de finanzas personales con soporte para múltiples cuentas y autenticación biométrica (BiometricPrompt API).";
-        }
-        if(q.includes('novashop') || q.includes('tienda') || q.includes('comercio') || q.includes('e-commerce')) {
-            return "<strong>NovaShop</strong> es una app de comercio electrónico de moda desarrollada en Jetpack Compose, con pasarela de pagos segura de Stripe y carrito offline con Room Database.";
-        }
-        if(q.includes('stack') || q.includes('tecnologia') || q.includes('kotlin') || q.includes('compose') || q.includes('arquitectura')) {
-            return "El ecosistema técnico de Ángel abarca:<br>• <strong>Lenguajes:</strong> Kotlin, Java<br>• <strong>UI:</strong> Jetpack Compose<br>• <strong>Arquitectura:</strong> Clean Architecture (Modular)<br>• <strong>Inyección:</strong> Dagger Hilt & Koin<br>• <strong>Asincronía:</strong> Coroutines & Flow";
-        }
-        if(q.includes('contacto') || q.includes('correo') || q.includes('contratar') || q.includes('precio') || q.includes('presupuesto')) {
-            return "Puedes contactar a Ángel directamente escribiendo al correo <strong>pantojaapps@gmail.com</strong> o visitando la sección de <a href='contacto.html' class='text-emerald-400 underline font-semibold'>Contacto</a>.";
-        }
-        
-        return "Ángel Pantoja es Senior Android Developer enfocado en rendimiento y Clean Architecture. ¿Deseas que te comparta su correo <strong>pantojaapps@gmail.com</strong> para coordinar una propuesta de proyecto?";
     }
 });
