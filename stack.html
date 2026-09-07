@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Stack | Pantoja Apps</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen selection:bg-emerald-500 selection:text-black flex flex-col justify-between">
+
+    <!-- Navegación Superior -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-cyan-400 p-[2px] shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                        <i class="fa-solid fa-code text-emerald-400 text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent flex items-center gap-1.5">
+                        Pantoja <span class="text-emerald-400">Apps</span>
+                    </span>
+                    <span class="block text-[10px] text-slate-400 font-semibold tracking-widest uppercase">Android Ecosystem</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-2 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800 text-sm font-medium text-slate-300">
+                <a href="index.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Inicio</a>
+                <a href="projects.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Aplicaciones</a>
+                <a href="stack.html" class="px-4 py-2 rounded-xl transition-all text-emerald-400 bg-emerald-500/10 font-semibold">Tech Stack</a>
+                <a href="contact.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                    <i class="fa-solid fa-paper-plane text-xs"></i> Contratar
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none cursor-pointer">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-4 flex flex-col gap-3">
+            <a href="index.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Inicio</a>
+            <a href="projects.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Aplicaciones</a>
+            <a href="stack.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Tech Stack</a>
+            <a href="contact.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Contenido Tech Stack -->
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20 w-full flex-grow space-y-12">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+            <span class="text-emerald-400 font-semibold text-xs tracking-widest uppercase">Ecosistema Tecnológico</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white">Stack de Desarrollo Android Avanzado</h2>
+            <p class="text-slate-400 text-sm">Herramientas, librerías y patrones de ingeniería de software implementados para garantizar robustez, mantenibilidad y rendimiento óptimo en cada release.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-slate-800 hover:border-emerald-500/40 transition-all group">
+                <i class="fa-brands fa-android text-4xl text-emerald-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-white font-semibold text-sm">Kotlin / Java</span>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-slate-800 hover:border-cyan-500/40 transition-all group">
+                <i class="fa-solid fa-mobile-screen text-4xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-white font-semibold text-sm">Jetpack Compose</span>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-slate-800 hover:border-indigo-500/40 transition-all group">
+                <i class="fa-solid fa-cube text-4xl text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-white font-semibold text-sm">Clean Arch</span>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-slate-800 hover:border-amber-500/40 transition-all group">
+                <i class="fa-solid fa-database text-4xl text-amber-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-white font-semibold text-sm">Room / SQLite</span>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-slate-800 hover:border-purple-500/40 transition-all group">
+                <i class="fa-solid fa-network-wired text-4xl text-purple-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-white font-semibold text-sm">Retrofit / Ktor</span>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-slate-800 hover:border-rose-500/40 transition-all group">
+                <i class="fa-solid fa-fire text-4xl text-rose-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-white font-semibold text-sm">Firebase Cloud</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-6 py-8 text-center text-xs text-slate-500">
+        © 2026 Pantoja Apps. Todos los derechos reservados.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

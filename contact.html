@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Pantoja Apps</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen selection:bg-emerald-500 selection:text-black flex flex-col justify-between">
+
+    <!-- Navegación Superior -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-cyan-400 p-[2px] shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                        <i class="fa-solid fa-code text-emerald-400 text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent flex items-center gap-1.5">
+                        Pantoja <span class="text-emerald-400">Apps</span>
+                    </span>
+                    <span class="block text-[10px] text-slate-400 font-semibold tracking-widest uppercase">Android Ecosystem</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-2 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800 text-sm font-medium text-slate-300">
+                <a href="index.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Inicio</a>
+                <a href="projects.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Aplicaciones</a>
+                <a href="stack.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Tech Stack</a>
+                <a href="contact.html" class="px-4 py-2 rounded-xl transition-all text-emerald-400 bg-emerald-500/10 font-semibold">Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                    <i class="fa-solid fa-paper-plane text-xs"></i> Contratar
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none cursor-pointer">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-4 flex flex-col gap-3">
+            <a href="index.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Inicio</a>
+            <a href="projects.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Aplicaciones</a>
+            <a href="stack.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Tech Stack</a>
+            <a href="contact.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Contenido de Contacto -->
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20 w-full flex-grow space-y-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-5 glass-panel rounded-3xl p-8 flex flex-col justify-between border border-slate-800">
+                <div class="space-y-6">
+                    <div>
+                        <span class="text-emerald-400 font-semibold text-xs tracking-widest uppercase">Conectemos</span>
+                        <h2 class="text-3xl font-extrabold text-white mt-1">Hablemos de tu proyecto</h2>
+                        <p class="text-slate-400 text-sm mt-2">¿Tienes una idea de app o necesitas un desarrollador experto para tu equipo? Escríbeme directo o mediante el formulario.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-400 block font-medium">Correo de Desarrollador</span>
+                            <a href="mailto:pantojaapps@gmail.com" class="text-white font-bold text-base hover:text-emerald-400 transition-colors">pantojaapps@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 glass-panel rounded-3xl p-8 border border-slate-800 relative">
+                <form id="contact-form" class="space-y-5" onsubmit="handleFormSubmit(event)">
+                    <div class="space-y-1">
+                        <h3 class="text-xl font-bold text-white">Envía un mensaje directo</h3>
+                        <p class="text-slate-400 text-xs">Simulación de envío corporativo instantáneo a pantojaapps@gmail.com</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Tu Nombre</label>
+                            <input type="text" id="name" required placeholder="Ej. Carlos Mendoza" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors">
+                            <span class="error-msg text-rose-400 text-xs hidden">Por favor ingresa tu nombre.</span>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Correo Electrónico</label>
+                            <input type="email" id="email" required placeholder="ejemplo@correo.com" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors">
+                            <span class="error-msg text-rose-400 text-xs hidden">Ingresa un correo válido.</span>
+                        </div>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Asunto del Proyecto</label>
+                        <input type="text" id="subject" required placeholder="Ej. Desarrollo de App Móvil" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors">
+                        <span class="error-msg text-rose-400 text-xs hidden">El asunto es requerido.</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Mensaje</label>
+                        <textarea id="message" rows="4" required placeholder="Cuéntame los detalles..." class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors resize-none"></textarea>
+                        <span class="error-msg text-rose-400 text-xs hidden">Escribe un mensaje.</span>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-paper-plane"></i> Enviar a Pantoja Apps
+                    </button>
+                </form>
+
+                <div id="success-alert" class="hidden absolute inset-0 glass-panel rounded-3xl p-8 flex flex-col items-center justify-center text-center space-y-4 bg-slate-950/95 z-20">
+                    <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-3xl animate-bounce">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-xl font-bold text-white">¡Mensaje Enviado con Éxito!</h4>
+                        <p class="text-slate-300 text-sm max-w-sm">Tu consulta ha sido procesada hacia <span class="text-emerald-400 font-semibold">pantojaapps@gmail.com</span>.</p>
+                    </div>
+                    <button onclick="resetForm()" class="px-6 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400 transition-all cursor-pointer">
+                        Enviar Otro Mensaje
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-6 py-8 text-center text-xs text-slate-500">
+        © 2026 Pantoja Apps. Todos los derechos reservados.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

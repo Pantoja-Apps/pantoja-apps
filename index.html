@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantoja Apps | Senior Android Developer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen selection:bg-emerald-500 selection:text-black flex flex-col justify-between">
+
+    <!-- Navegación Superior -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-cyan-400 p-[2px] shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                        <i class="fa-solid fa-code text-emerald-400 text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent flex items-center gap-1.5">
+                        Pantoja <span class="text-emerald-400">Apps</span>
+                    </span>
+                    <span class="block text-[10px] text-slate-400 font-semibold tracking-widest uppercase">Android Ecosystem</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-2 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800 text-sm font-medium text-slate-300">
+                <a href="index.html" class="px-4 py-2 rounded-xl transition-all text-emerald-400 bg-emerald-500/10 font-semibold">Inicio</a>
+                <a href="projects.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Aplicaciones</a>
+                <a href="stack.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Tech Stack</a>
+                <a href="contact.html" class="px-4 py-2 rounded-xl transition-all hover:text-white">Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                    <i class="fa-solid fa-paper-plane text-xs"></i> Contratar
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none cursor-pointer">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-4 flex flex-col gap-3">
+            <a href="index.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Inicio</a>
+            <a href="projects.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Aplicaciones</a>
+            <a href="stack.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Tech Stack</a>
+            <a href="contact.html" class="text-slate-200 hover:text-emerald-400 font-medium py-2">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Contenido de Inicio -->
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20 w-full flex-grow space-y-16">
+        <!-- Hero Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <div class="lg:col-span-8 glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden flex flex-col justify-between neon-glow neon-glow-hover transition-all">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"></div>
+                
+                <div class="relative z-10 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Disponible para nuevos proyectos & consultoría
+                    </div>
+                    <div class="space-y-2">
+                        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
+                            Ángel Pantoja
+                        </h1>
+                        <p class="text-xl md:text-2xl font-semibold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                            Senior Android Developer & Mobile Architect
+                        </p>
+                    </div>
+                    <p class="text-slate-400 text-base md:text-lg leading-relaxed max-w-2xl">
+                        Fundador de <strong class="text-white">Pantoja Apps</strong>. Especialista en la creación de ecosistemas móviles nativos de alto rendimiento, arquitectura modular limpia (Clean Architecture), inyección de dependencias con Hilt y experiencias UI fluidas bajo Jetpack Compose.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-8 flex flex-wrap gap-4 items-center">
+                    <a href="projects.html" class="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2">
+                        Explorar Aplicaciones <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="contact.html" class="px-6 py-3 rounded-xl glass-panel hover:bg-slate-800/80 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700">
+                        <i class="fa-regular fa-envelope text-emerald-400"></i> pantojaapps@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Foto de Perfil -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                <div class="glass-panel rounded-3xl p-4 flex flex-col justify-center flex-1 border border-slate-800 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Ángel Pantoja - Android Developer" class="w-full h-64 md:h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500 grayscale contrast-125">
+                    <div class="absolute bottom-6 left-6 right-6 z-20">
+                        <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider block">Ángel Pantoja</span>
+                        <span class="text-white font-bold text-lg">Lead Android Engineer</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Métricas -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800 text-center space-y-1">
+                <div class="text-3xl md:text-4xl font-extrabold text-emerald-400">5+</div>
+                <div class="text-sm font-semibold text-white">Años de Experiencia</div>
+                <p class="text-xs text-slate-400">Ecosistema Android Nativo</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800 text-center space-y-1">
+                <div class="text-3xl md:text-4xl font-extrabold text-cyan-400">12+</div>
+                <div class="text-sm font-semibold text-white">Apps en Google Play</div>
+                <p class="text-xs text-slate-400">Alta calificación 4.8★</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800 text-center space-y-1">
+                <div class="text-3xl md:text-4xl font-extrabold text-indigo-400">500k+</div>
+                <div class="text-sm font-semibold text-white">Descargas Totales</div>
+                <p class="text-xs text-slate-400">Usuarios activos globales</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800 text-center space-y-1">
+                <div class="text-3xl md:text-4xl font-extrabold text-amber-400">100%</div>
+                <div class="text-sm font-semibold text-white">Clean Architecture</div>
+                <p class="text-xs text-slate-400">Pruebas unitarias & CI/CD</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-6 py-8 text-center text-xs text-slate-500">
+        © 2026 Pantoja Apps. Todos los derechos reservados.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
