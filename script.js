@@ -175,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
         appendLoadingMessage(loadingId);
 
         try {
-            // URL de tu Cloudflare Worker personal
             const WORKER_URL = "https://old-poetry-00c1.angelpantoja241.workers.dev/";
 
             const response = await fetch(WORKER_URL, {
@@ -204,14 +203,31 @@ document.addEventListener('DOMContentLoaded', () => {
     function appendMessage(text, sender) {
         if(!chatMessages) return;
         const div = document.createElement('div');
+        
         if(sender === 'user') {
             div.className = 'flex items-end justify-end gap-2';
             div.innerHTML = `<div class="bg-emerald-600 text-slate-950 font-medium p-3 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed shadow-md">${text}</div>`;
         } else {
             div.className = 'flex items-start gap-2';
+            
+            // Limpieza de asteriscos y formato de texto de la IA
+            let formattedText = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '$1');
+
             div.innerHTML = `
                 <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-xs font-bold">P</div>
-                <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-200 max-w-[85%] leading-relaxed">${text}</div>
+                <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-200 max-w-[85%] leading-relaxed space-y-3">
+                    <div>${formattedText}</div>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <a href="https://wa.me/584121582645" target="_blank" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                        </a>
+                        <a href="https://github.com/Pantoja-Apps" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/30 font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all">
+                            <i class="fa-brands fa-github text-sm"></i> GitHub
+                        </a>
+                    </div>
+                </div>
             `;
         }
         chatMessages.appendChild(div);
