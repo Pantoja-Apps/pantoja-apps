@@ -136,7 +136,7 @@ function resetForm() {
     document.getElementById('success-alert').classList.add('hidden');
 }
 
-// ================= 4. ASISTENTE VIRTUAL CON IA (CORREGIDO Y BLINDADO) =================
+// ================= 4. ASISTENTE VIRTUAL (CONTROL DIRECTO) =================
 document.addEventListener('DOMContentLoaded', () => {
     const chatToggleBtn = document.getElementById('chat-toggle-btn');
     const chatCloseBtn = document.getElementById('chat-close-btn');
@@ -148,27 +148,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if(chatToggleBtn && chatWindow) {
         chatToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const isHidden = chatWindow.classList.contains('hidden');
-            if(isHidden) {
+            // Alternamos directamente la clase hidden y limpiamos opacidad/escala
+            if(chatWindow.classList.contains('hidden')) {
                 chatWindow.classList.remove('hidden');
-                setTimeout(() => {
-                    chatWindow.classList.remove('opacity-0', 'scale-95');
-                }, 10);
+                chatWindow.classList.remove('opacity-0', 'scale-95');
             } else {
-                chatWindow.classList.add('opacity-0', 'scale-95');
-                setTimeout(() => {
-                    chatWindow.classList.add('hidden');
-                }, 300);
+                chatWindow.classList.add('hidden', 'opacity-0', 'scale-95');
             }
         });
     }
 
     if(chatCloseBtn && chatWindow) {
         chatCloseBtn.addEventListener('click', () => {
-            chatWindow.classList.add('opacity-0', 'scale-95');
-            setTimeout(() => {
-                chatWindow.classList.add('hidden');
-            }, 300);
+            chatWindow.classList.add('hidden', 'opacity-0', 'scale-95');
         });
     }
 
