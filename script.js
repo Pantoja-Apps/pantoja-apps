@@ -1,4 +1,3 @@
-// Manejo del menú móvil
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
     if(mobileMenu) {
@@ -11,7 +10,7 @@ if(mobileBtn) {
     mobileBtn.addEventListener('click', toggleMobileMenu);
 }
 
-// Función para abrir modal con Mockups Interactivos Reales
+// Función para abrir modal con Mockups Interactivos Reales (UI Completa)
 function openModal(title, description, tags, mockups, mockupTitles) {
     const modal = document.getElementById('project-modal');
     const modalContent = document.getElementById('modal-content');
@@ -101,7 +100,6 @@ window.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
 });
 
-// Formulario de contacto
 function handleFormSubmit(event) {
     event.preventDefault();
     const name = document.getElementById('name').value.trim();
